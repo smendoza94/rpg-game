@@ -11,6 +11,7 @@ const {
 
 // we make our resolvers based on our typeDefs. BEST PRACTICE to make typeDefs first and then the resolvers
 
+
 const resolvers = {
 	// when the query is called this function will run
 	Query: {
@@ -47,7 +48,7 @@ const resolvers = {
 			}
 
 			try {
-				return await Todo.create({
+				return await Fighter.create({
 					name,
 					// context is the request object
 					// .user is the jwt that is defined in the server.js file

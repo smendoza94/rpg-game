@@ -1,7 +1,7 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const mongoose = require('mongoose');
-// const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 // graphql will create an endpoint to POST /graphql where it will utilize our resolvers
 
