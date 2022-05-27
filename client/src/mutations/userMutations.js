@@ -21,3 +21,30 @@ export const LOGIN = gql`
 		}
 	}
 `;
+
+export const CREATE_FIGHTER = gql`
+	mutation CreateFighter(
+		$name: String!
+		$health: Int!
+		$attack: Int!
+		$isAlive: Boolean!
+	) {
+		createFighter(
+			name: $name
+			health: $health
+			attack: $attack
+			isAlive: $isAlive
+		) {
+			_id
+			name
+			health
+			attack
+			isAlive
+			enemiesDefeated
+			user {
+				_id
+				userName
+			}
+		}
+	}
+`;
