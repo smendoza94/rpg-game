@@ -13,7 +13,6 @@ export const USERS = gql`
 				attack
 				enemiesDefeated
 				isAlive
-				_id
 			}
 		}
 	}

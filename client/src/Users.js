@@ -11,8 +11,8 @@ import { useAuth } from './useAuth';
 export const UsersContainer = () => {
 	useAuth();
 
-	const [firstName, setFirstName] = useState('');
-	const [lastName, setlastName] = useState('');
+	const [userName, setUserName] = useState('');
+	const [fighterName, setFighterName] = useState('');
 
 	const { loading, data, error } = useQuery(USERS);
 
@@ -37,14 +37,14 @@ export const UsersContainer = () => {
 	return (
 		<div>
 			{/* create input field that sets value to firstName. when change is made (onChange) event (e) happens that sets variable setFirstName to the updated value of firstName (which in this case is e.target.value) */}
-			{/* same thing happens for lastName */}
+			{/* same thing happens for fighterName */}
 			<input
-				value={firstName}
-				onChange={(e) => setFirstName(e.target.value)}
+				value={userName}
+				onChange={(e) => setUserName(e.target.value)}
 			/>
 			<input
-				value={lastName}
-				onChange={(e) => setlastName(e.target.value)}
+				value={fighterName}
+				onChange={(e) => setFighterName(e.target.value)}
 			/>
 			{/* in the curly brackets we are askign if createUserLoading is happening. if so, then to prevent users from entering multiple users while the api still being called, we hide the button and display messsage within the h1. if createUserLoading is not running, then we present the button to the user to add a user*/}
 			{createUserLoading ? (
@@ -56,7 +56,7 @@ export const UsersContainer = () => {
 						// passing in variables for queries different from passing in variables in the mutations
 						// these variables reference variables defined in the userMutations file in the mutations directory
 						await createUserMutation({
-							variables: { firstName, lastName },
+							variables: { userName, fighterName },
 						});
 					}}
 				>
@@ -72,7 +72,7 @@ export const UsersContainer = () => {
 							justifyContent: 'space-between',
 						}}
 					>
-						<h1>{user.fullName}</h1>
+						<h1>{user.userName}</h1>
 						<Link to={`/users/${user._id}`}>View Profile</Link>
 					</div>
 				);

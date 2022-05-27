@@ -27,12 +27,10 @@ export const SingleUser = () => {
 				flexDirection: 'column',
 			}}
 		>
-			<h1>First Name</h1>
-			<p>{user.firstName}</p>
-			<h1>Last Name</h1>
-			<p>{user.lastName}</p>
-			<h1>Full Name</h1>
-			<p>{user.fullName}</p>
+			<h1>Username</h1>
+			<p>{user.userName}</p>
+			<h1>Fighter</h1>
+			<p>{user.fighter}</p>
 		</div>
 	);
 };
