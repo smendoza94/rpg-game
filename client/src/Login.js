@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/client';
 import { LOGIN } from './mutations/userMutations';
 
 const Login = () => {
-	const [firstNameInput, setFirstNameInput] = useState('');
+	const [userNameInput, setUserNameInput] = useState('');
 	const [passwordInput, setPasswordInput] = useState('');
 	const [loginMutation] = useMutation(LOGIN, {
 		onCompleted: (data) => {
@@ -22,12 +22,12 @@ const Login = () => {
 		>
 			<input
 				placeholder="Username"
-				value={firstNameInput}
-				onChange={(e) => setFirstNameInput(e.target.value)}
+				value={userNameInput}
+				onChange={(e) => setUserNameInput(e.target.value)}
 			/>
 
-            <input
-                placeholder="Password"
+			<input
+				placeholder="Password"
 				type="password"
 				value={passwordInput}
 				onChange={(e) => setPasswordInput(e.target.value)}
@@ -38,7 +38,7 @@ const Login = () => {
 					await loginMutation({
 						// variables need to match up variables we defined in userMutations for the LOGIN mutation
 						variables: {
-							firstName: firstNameInput,
+							userName: userNameInput,
 							password: passwordInput,
 						},
 					});

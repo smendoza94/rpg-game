@@ -17,7 +17,7 @@ const resolvers = {
 	Query: {
 		fighters: async () => {
 			try {
-				return await Todo.find({});
+				return await Fighter.find({});
 			} catch (e) {
 				throw new Error(e);
 			}
@@ -40,7 +40,7 @@ const resolvers = {
 	// when a mutation is called this function will run
 	// rememeber: anytime doing something other than making a GET request, we are making a Mutation (i.e. login)
 	Mutation: {
-		createFighter: async (root, { name }, context) => {
+		createFighter: async (root, { name, health, attack, isAlive }, context) => {
 			if (!context.user) {
 				throw new AuthenticationError(
 					"You must be logged in to create a fighter"
@@ -49,7 +49,10 @@ const resolvers = {
 
 			try {
 				return await Fighter.create({
-					name,
+                    name,
+                    health,
+                    attack,
+                    isAlive,
 					// context is the request object
 					// .user is the jwt that is defined in the server.js file
 					// _id is the id of the user making the request that is in the jwt in the header of the request
