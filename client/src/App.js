@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route, Link } from 'react-router-dom';
+import { About } from './About';
+import { Home } from './Home';
+import { UsersContainer } from './Users';
+import { SingleUser } from './SingleUser';
+import Login from './Login';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<div>
+			<Link to="/">Home</Link>
+			<Link to="/about">about</Link>
+			<Link to="/users">Users</Link>
+			{/* inside of route declare every route we want in front end. what should render when url matches route */}
+			<Routes>
+				<Route path="/" element={<Login />} />
+				<Route path="/about" element={<About />} />
+				<Route path="/users" element={<UsersContainer />} />
+				<Route path="/users/:userId" element={<SingleUser />} />
+			</Routes>
+		</div>
+	);
 }
 
 export default App;
