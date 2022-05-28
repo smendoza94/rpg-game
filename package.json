@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "angular-bootstrap-md": "^13.0.0",
+    "mdb-ui-kit": "^4.1.0"
+  },
+  "devDependencies": {
+    "@chakra-ui/cli": "^2.0.0"
+  }
+}
