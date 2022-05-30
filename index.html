@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RPG Logic Tests</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="row">
+        <div id="nav" class="col-3">
+          <div class="fs-3 p-2 mt-3">Battle RPG</div>
+          <!-- login for user -->
+          <!-- <form class="p-2 mt-4">
+            <div class="mb-3">
+              <label for="username-input" class="form-label">Username:</label>
+              <input type="username" class="form-control" id="username-input" />
+            </div>
+            <div class="mb-3">
+              <label for="password-input" class="form-label">Password:</label>
+              <input type="password" class="form-control" id="password-input" />
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+          </form> -->
+          <!-- player information will display here, after loggin in  -->
+        </div>
+        <div class="col-9">
+          <!-- monster cards will be created/inserted and appended to "#monster-display" -->
+          <div id="monster-display" class="d-flex flex-wrap"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="./index.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"
+  ></script>
+</html>
