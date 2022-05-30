@@ -26,3 +26,19 @@ export const USER = gql`
 		}
 	}
 `;
+
+
+export const TESTUSER = gql`
+	query Query($id: String!) {
+		user(id: $id) {
+			_id
+			userName
+			fighter {
+				_id
+				name
+				health
+				attack
+			}
+		}
+	}
+`;

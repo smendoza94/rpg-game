@@ -4,14 +4,19 @@ import { LOGIN } from './mutations/userMutations';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-    const nav = useNavigate;
+	const nav = useNavigate();
+	const routeChange = () => {
+		let path = `/`;
+		nav(path);
+	}; 
 	const [userNameInput, setUserNameInput] = useState('');
 	const [passwordInput, setPasswordInput] = useState('');
 	const [loginMutation] = useMutation(LOGIN, {
 		onCompleted: (data) => {
 			console.log(data);
 			localStorage.setItem('token', data.login.token);
-		},
+			nav('/home', { replace: true });
+		}
 	});
 
 	return (
@@ -42,8 +47,9 @@ const Login = () => {
 						variables: {
 							userName: userNameInput,
 							password: passwordInput,
-						},
+						}
 					});
+					routeChange();
 				}}
 			>
 				Login

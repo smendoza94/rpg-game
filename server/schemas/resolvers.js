@@ -21,7 +21,14 @@ const resolvers = {
 			} catch (e) {
 				throw new Error(e);
 			}
-		},
+        },
+        fighter: async (root, { id }) => {
+            try {
+                return await Fighter.findById(id)
+            } catch (e) {
+                throw new Error(e);
+            }
+        },
 		users: async (root, args) => {
 			try {
 				return await User.find({});

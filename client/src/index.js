@@ -28,7 +28,7 @@ const authLink = setContext((_, { headers }) => {
 	// going into localStorage and retrieving token
 	const token = localStorage.getItem('token');
 
-	// whatever we return her ewill be the object attacked to the request that is sent to the backend
+	// whatever we return here will be the object attacked to the request that is sent to the backend
 	return {
 		headers: {
 			// graphql attaches extra props to headers. here we are keeping them and passing authorization

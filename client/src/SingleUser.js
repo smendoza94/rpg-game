@@ -19,7 +19,7 @@ export const SingleUser = () => {
 		return <h1>Loading please wait......</h1>
 	}
 
-
+    console.log(user);
 	return (
 		<div
 			style={{

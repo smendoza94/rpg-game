@@ -4,18 +4,23 @@ import { Home } from './Home';
 import { UsersContainer } from './Users';
 import { SingleUser } from './SingleUser';
 import Login from './Login';
+import Logout from './Logout';
+import Navbar from './Navbar';
 
 function App() {
 	return (
-		<div>
+        <div>
+            <Navbar />
 			<Link to="/">Home</Link>
 			<Link to="/login">Login</Link>
+			<Link to="/logout">Logout</Link>
 			<Link to="/about">About</Link>
 			<Link to="/users">Users</Link>
 			{/* inside of route declare every route we want in front end. what should render when url matches route */}
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/login" element={<Login />} />
+				<Route path="/logout" element={<Logout />} />
 				<Route path="/about" element={<About />} />
 				<Route path="/users" element={<UsersContainer />} />
 				<Route path="/users/:userId" element={<SingleUser />} />
