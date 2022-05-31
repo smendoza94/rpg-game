@@ -1,36 +1,39 @@
 const playerDispCont = document.querySelector("#nav");
 const monsterListCont = document.querySelector("#monster-display");
 
-const monsterRating = `2`;
+const monsterRating = `1`;
 const APIurl = `https://api.open5e.com/monsters/?challenge_rating=${monsterRating}&armor_class=&type=&name=&document=&document__slug=&name=&ordering=hit_points&type=`;
 
 let playerInfo;
 
-// fetch monsters from remote api,
-// then create default character, display character, and display monster cards list
-fetch(APIurl)
-  .then((response) => {
-    createCharacter();
-    displayPlayer(playerInfo);
-    response.json().then((data) => displayMonsters(data.results));
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+const characterId = "629513869d62b82617c40951";
 
 // load a saved character, if nothing is saved create a default character for practice
-const createCharacter = () => {
+const getCharacter = () => {
   // load saved character
-  playerInfo = JSON.parse(localStorage.getItem("playerSave"));
-  if (!playerInfo) {
-    // set default character
-    playerInfo = {
-      name: "Default Knight",
-      hit_points: 15,
-      strength: 13,
-      monstersDefeated: [],
-    };
-  }
+  // playerInfo = JSON.parse(localStorage.getItem("playerSave"));
+  fetch(`/api/users/${characterId}`).then((response) => {
+    if (!response.ok) {
+      throw new Error("Something went wrong!");
+    }
+    response.json().then((data) => {
+      playerInfo = data;
+      displayPlayer(playerInfo);
+    });
+  });
+};
+
+// fetch monsters from remote api,
+// then create default character, display character, and display monster cards list
+const getMonsterArr = () => {
+  fetch(APIurl)
+    .then((response) => {
+      // use the monster array from API data to create the monster card displays
+      response.json().then((data) => displayMonsters(data.results));
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 const fight = (player, enemy) => {
@@ -57,18 +60,48 @@ const fight = (player, enemy) => {
   }
   // give the player HP, Str upgrades, and add the defeated monster to its WIN list
   if (fightWon) {
-    player.hit_points += Math.ceil(enemy.hit_points * 0.5);
-    player.strength += Math.ceil(enemy.strength * 0.5);
+    player.hit_points += Math.ceil(enemy.hit_points * 0.1);
+    player.strength += Math.ceil(enemy.strength * 0.1);
     player.monstersDefeated.push(enemy.name);
-    // save the user's updated info and
-    localStorage.setItem("playerSave", JSON.stringify(playerInfo));
-    document.location.reload();
+    // save the user's updated info to the db
+    // localStorage.setItem("playerSave", JSON.stringify(playerInfo));
+    // document.location.reload();
+    fetch(`/api/users/${characterId}`, {
+      method: "PUT",
+      headers: {
+        Accpet: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(playerInfo),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Something went wrong");
+        }
+        response.json();
+      })
+      .then(location.reload())
+      .catch((err) => {
+        console.log(err);
+      });
   } else {
     // if the player looses the fight, delete the character
-    localStorage.removeItem("playerSave");
-    document.location.reload();
+    // localStorage.removeItem("playerSave");
+    // document.location.reload();
+    fetch(`/api/users/${characterId}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Something went wrong");
+        }
+        response.json();
+      })
+      .then(location.reload())
+      .catch((err) => {
+        console.log(err);
+      });
   }
-  return fightWon;
 };
 
 function displayMonsters(monsterArr) {
@@ -149,7 +182,7 @@ function displayMonsters(monsterArr) {
 function displayPlayer(playerObj) {
   // <div class="card bg-dark mt-4" style="width: 100%">
   //   <div class="card-body">
-  //     <h5 class="card-title ps-3 py-2 bg-success rounded-pill"> ${playerInfo.name}</h5>
+  //     <h5 class="card-title ps-3 py-2 bg-success rounded-pill"> ${playerInfo.username}</h5>
   //     <p class="card-text p-2">HP: ${playerInfo.hit_points}, Att: ${playerInfo.strength}</p>
   //     <!-- collapsable count of monsters defeated -->
   //     <p>
@@ -177,7 +210,7 @@ function displayPlayer(playerObj) {
   // create player name/title h5 element, append to body
   const playerName = document.createElement("h5");
   playerName.classList = `card-title ps-3 py-2 bg-success rounded-pill`;
-  playerName.textContent = playerObj.name;
+  playerName.textContent = playerObj.username;
   playerBody.appendChild(playerName);
 
   // create player stats, append to body
@@ -211,3 +244,6 @@ function displayPlayer(playerObj) {
 
   playerDispCont.appendChild(playerBody);
 }
+
+getCharacter();
+getMonsterArr();
