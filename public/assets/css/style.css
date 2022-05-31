@@ -1,7 +1,11 @@
 * {
-  color: whitesmoke;
+  color: rgb(245, 245, 245);
 }
 
 body {
   background: #222;
+}
+
+.hide {
+  display: none;
 }

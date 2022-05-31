@@ -1,12 +1,33 @@
+// main display containers for User Interface
 const playerDispCont = document.querySelector("#nav");
 const monsterListCont = document.querySelector("#monster-display");
 
-const monsterRating = `1`;
+// obtain the values from the user login information
+const loginForm = document.querySelector("#login-form");
+const usernameInput = document.querySelector("#username-input");
+const passwordInput = document.querySelector("#password-input");
+
+// all monster/enemy array information from 3rd party API
+const monsterRating = `0`;
 const APIurl = `https://api.open5e.com/monsters/?challenge_rating=${monsterRating}&armor_class=&type=&name=&document=&document__slug=&name=&ordering=hit_points&type=`;
 
+// this will hold the active player information when logged in
 let playerInfo;
 
-const characterId = "629513869d62b82617c40951";
+const characterId = "";
+
+const loginUser = (event) => {
+  event.preventDefault();
+  console.log(usernameInput.value);
+  console.log(passwordInput.value);
+};
+const createUser = (event) => {
+  event.preventDefault();
+  console.log(usernameInput.value);
+  console.log(passwordInput.value);
+};
+
+loginForm.addEventListener("submit", loginUser);
 
 // load a saved character, if nothing is saved create a default character for practice
 const getCharacter = () => {
