@@ -2,6 +2,8 @@
     font-style: bold;
     font-size: 15rem;
     border: 5px solid black;
+    color: white;
+    text-shadow: 2px 2px 7px #000000;
   }
   
   .boss {
@@ -13,6 +15,8 @@
     width:600px;
     margin:15px;
   }
+  
+
   
   .basic {
     text-align: center;
