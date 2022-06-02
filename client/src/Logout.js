@@ -1,6 +1,3 @@
-import { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { LOGIN } from './mutations/userMutations';
 import { useNavigate } from 'react-router-dom';
 
 const Logout = () => {

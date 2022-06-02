@@ -1,5 +1,6 @@
 import { AppBar, Toolbar, Box, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
+import Logout from './Logout';
 
 function Navbar() {
 	return (
@@ -19,6 +20,28 @@ function Navbar() {
 						sx={{ flexGrow: 1, textAlign: 'right' }}
 					>
 						<Link
+							to="/signup"
+							style={{
+								textDecoration: 'none',
+								color: 'white',
+								marginRight: '15px',
+							}}
+						>
+							Sign Up
+						</Link>
+
+						<Link
+							to="/game"
+							style={{
+								textDecoration: 'none',
+								color: 'white',
+								marginRight: '15px',
+							}}
+						>
+							Game
+						</Link>
+
+						<Link
 							to="/login"
 							style={{
 								textDecoration: 'none',
@@ -28,7 +51,9 @@ function Navbar() {
 						>
 							Login
 						</Link>
+
 						<Link
+							onClick={localStorage.clear()}
 							to="/"
 							style={{
 								textDecoration: 'none',
@@ -37,12 +62,6 @@ function Navbar() {
 							}}
 						>
 							Logout
-						</Link>
-						<Link
-							to="/signup"
-							style={{ textDecoration: 'none', color: 'white' }}
-						>
-							Sign Up
 						</Link>
 					</Box>
 				</Toolbar>

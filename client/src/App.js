@@ -1,7 +1,6 @@
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { About } from './About';
 import { Home } from './Home';
-import { UsersContainer } from './Users';
 import { SingleUser } from './SingleUser';
 import SignUp  from './Signup';
 import Login from './Login';
@@ -15,13 +14,6 @@ function App() {
     
 		<div>    
             <Navbar />
-	{/* 		<Link to="/">Home</Link>
-			<Link to="/login">Login</Link>
-			<Link to="/logout">Logout</Link>
-			<Link to="/about">About</Link>
-			<Link to="/game">Game</Link>
-			<Link to="/signup">Sign Up</Link> */}
-			{/* inside of route declare every route we want in front end. what should render when url matches route */}
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/login" element={<Login />} />
