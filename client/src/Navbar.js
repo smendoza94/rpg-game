@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, Box, Typography, Button } from '@mui/material';
+import { AppBar, Toolbar, Box, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 function Navbar() {
@@ -9,7 +9,7 @@ function Navbar() {
 					<Typography variant="h5" component="div">
 						<Link to="/" style={{ textDecoration: 'none', color: 'white' }}>Home</Link>
 					</Typography>
-					<Box alignItems="right," sx={{ flexGrow: 1, textalign: 'right' }}>
+					<Box alignItems = "right," sx = {{ flexGrow: 1, textAlign: 'right' }}>
 						<Link to="/login" style={{ textDecoration: 'none', color: 'white', marginRight: '15px' }}>Login</Link>
 						<Link to="/signup" style={{ textDecoration: 'none', color: 'white' }}>Sign Up</Link>
 					</Box>
@@ -19,4 +19,4 @@ function Navbar() {
 	);
 }
 
-export default Navbar; 
+export default Navbar;

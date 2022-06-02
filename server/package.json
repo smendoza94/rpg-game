@@ -1,22 +1,22 @@
 {
-    "name": "server",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm start\"",
-        "start": "node server.js"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "apollo-server-express": "^3.8.1",
-        "bcryptjs": "^2.4.3",
-        "express": "^4.18.1",
-        "graphql": "^16.5.0",
-        "jsonwebtoken": "^8.5.1",
-        "mongoose": "^6.3.4"
-    }
+	"name": "server",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "nodemon server.js",
+		"start": "node server.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"apollo-server-express": "^3.8.1",
+		"bcryptjs": "^2.4.3",
+		"express": "^4.18.1",
+		"graphql": "^16.5.0",
+		"jsonwebtoken": "^8.5.1",
+		"mongoose": "^6.3.4"
+	}
 }
