@@ -1,22 +1,39 @@
 const { Schema, model } = require("mongoose");
+const bcrypt = require("bcrypt"); // encrypt passwords npm
 
-const UserSchema = new Schema({
-  username: {
-    type: String,
+const UserSchema = new Schema(
+  {
+    username: {
+      type: String,
+    },
+    password: {
+      type: String,
+    },
+    hit_points: {
+      type: Number,
+      default: 5,
+    },
+    strength: {
+      type: Number,
+      default: 2,
+    },
+    monstersDefeated: [],
   },
-  password: {
-    type: String,
-  },
-  hit_points: {
-    type: Number,
-    default: 50,
-  },
-  strength: {
-    type: Number,
-    default: 15,
-  },
-  monstersDefeated: [],
-});
-
+  // set up method to run on instance data (per user) to check password
+  function checkPassword(loginPw) {
+    return bcrypt.compareSync(loginPw, this.password);
+  }
+)
+  // pre is mongoose version of "sequelize hooks" are functions that
+  // are called before or after calls in mongoose
+  // set up beforeCreate lifecycle pre-function functionality
+  .pre("save", async function () {
+    this.password = await bcrypt.hash(this.password, 10);
+    return this;
+  })
+  .pre("findOneAndUpdate", async function () {
+    this.password = await bcrypt.hash(this.password, 10);
+    return this;
+  });
 const User = model("User", UserSchema);
 module.exports = User;
