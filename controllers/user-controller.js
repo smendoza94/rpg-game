@@ -1,4 +1,5 @@
 const { User } = require("../models");
+const { where } = require("../models/User");
 
 const userController = {
   // create a user
@@ -38,7 +39,7 @@ const userController = {
         res.status(400).json({ message: "Incorrect password" });
         return;
       }
-      res.json({ user: dbUserData, message: "You are now logged in" });
+      res.json(dbUserData);
       // save successful logged in "session" to cookies
       // req.session.save(() => {
       //   // declare and save the current session variables
@@ -50,17 +51,17 @@ const userController = {
       // });
     });
   },
-  // destroying the session variables and resetting the cookie
-  logoutUser(req, res) {
-    if (req.session.loggedIn) {
-      // use the destroy method to end the session cookie
-      req.session.destroy(() => {
-        res.status(204).end();
-      });
-    } else {
-      res.status(404).end();
-    }
-  },
+  // // destroying the session variables and resetting the cookie
+  // logoutUser(req, res) {
+  //   if (req.session.loggedIn) {
+  //     // use the destroy method to end the session cookie
+  //     req.session.destroy(() => {
+  //       res.status(204).end();
+  //     });
+  //   } else {
+  //     res.status(404).end();
+  //   }
+  // },
 
   getAllUser(req, res) {
     User.find({})
@@ -75,6 +76,7 @@ const userController = {
   //get a user by Id
   getUserById({ params }, res) {
     User.findOne({ _id: params.id })
+      // .select("-password -__v")
       .then((dbUserData) => {
         if (!dbUserData) {
           res.status(404).json({ message: "No user found with this ID" });

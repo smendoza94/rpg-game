@@ -27,7 +27,6 @@ const fight = (player, enemy) => {
     player.monstersDefeated.push(enemy.name);
     // save the user's updated info to the db
     // localStorage.setItem("playerSave", JSON.stringify(playerInfo));
-    // c
     fetch(`/api/users/${characterId}`, {
       method: "PUT",
       headers: {

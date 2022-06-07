@@ -9,3 +9,7 @@ body {
 .hide {
   display: none;
 }
+
+.error {
+  color: #ff0000;
+}

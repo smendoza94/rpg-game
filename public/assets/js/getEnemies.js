@@ -1,5 +1,5 @@
 const $monsterListCont = document.querySelector("#monster-display");
-const $navLevelCont = document.querySelector("#nav");
+// const $navLevelCont = document.querySelector("#nav");
 
 // set the default enemy rating to 1/4 lowest
 let monsterRating = `1/4`;

@@ -63,5 +63,3 @@ function displayPlayer(playerObj) {
 
   playerDispCont.appendChild(playerBody);
 }
-
-module.exports = displayPlayer;

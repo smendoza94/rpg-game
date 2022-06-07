@@ -37,6 +37,8 @@ async function createCharacter(event) {
       });
       document.location.replace("/");
     } else {
+      const formEl = document.querySelector("#new-character-form");
+      formEl.innerHTML += `<p class="error">This username is already taken.</p>`;
       console.log(response.statusText);
     }
   }
