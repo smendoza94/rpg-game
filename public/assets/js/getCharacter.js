@@ -24,6 +24,7 @@ function displayCharacter({
 }) {
   const characterCard = `
   <div class="card bg-dark mt-4" style="width: 100%">
+  <h6 class="mt-1 ms-4"><u>Hero Card</u></h6>
     <div class="card-body">
       <h5 class="card-title ps-3 py-2 bg-success rounded-pill"> ${username}</h5>
       <p class="card-text p-2">HP: ${hit_points}, Att: ${strength}</p>
@@ -33,15 +34,9 @@ function displayCharacter({
           Monsters Defeated: ${monstersDefeated.length}
         </button>
       </p>
-    ${monstersDefeated.forEach((enemy) => {
-      return ` <div class="collapse" id="collapseList">
-      <div class="card card-body bg-secondary"> ${enemy} </div>
-    </div>`;
-    })}
     </div>
   </div>
   `;
-
   $navLevelCont.innerHTML += characterCard;
 }
 

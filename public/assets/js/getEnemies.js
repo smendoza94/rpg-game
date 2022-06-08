@@ -36,6 +36,7 @@ async function getEnemyArr() {
     .then((response) => {
       response.json().then((enemyArr) => {
         enemyArr.results.forEach(printEnemy);
+        enemyArr.results.forEach(addFightBtnAction);
       });
     })
     .catch((err) => {
@@ -43,32 +44,41 @@ async function getEnemyArr() {
     });
 }
 
-const printEnemy = ({ name, size, type, alignment, hit_points, strength }) => {
+const printEnemy = (enemyObj) => {
   const enemyCard = `
   <div class="card bg-dark m-2 border border-white" style="width: 18rem">
     <div class="card-body">
-      <h5 class="card-title">${name}</h5>
-      <p class="card-text">${size} ${type}, ${alignment}</p>
-      <p class="card-text">HP: ${hit_points}, Att: ${strength}</p>
+      <h5 class="card-title">${enemyObj.name}</h5>
+      <p class="card-text">${enemyObj.size} ${enemyObj.type}, ${
+    enemyObj.alignment
+  }</p>
+      <p class="card-text">HP: ${enemyObj.hit_points}, Att: ${
+    enemyObj.strength
+  }</p>
     </div>
+    ${(() => {
+      if (playerInfo.monstersDefeated.includes(enemyObj.name)) {
+        return `<button class="btn btn-secondary">Defeated</button>`;
+      } else {
+        return `<button class="btn btn-success" data-action="fight-${enemyObj.name}">Fight</button>`;
+      }
+    })()}
   </div>
   `;
-  // ${(() => {
-  //   if (playerInfo.monstersDefeated.includes(monsterObj.name)) {
-  //     return `<button class="btn btn-secondary">Defeated</button>`;
-  //   } else {
-  //     return `<button class="btn btn-success" data-action="fight" data-name="${name}">Fight</button>`;
-  //   }
-  // })()}
   $monsterListCont.innerHTML += enemyCard;
-  // $monsterListCont
-  //   .querySelectorAll(`[data-action="fight"]`)
-  //   .forEach((fightBtn) => {
-  //     console.log(fightBtn);
-  //     fightBtn.addEventListener("click", () => {
-  //       console.log(`You fight the ${fightBtn.getAttribute("data-name")}!`);
-  //     });
-  //   });
+};
+
+const addFightBtnAction = (enemyObj) => {
+  let fightBtnEl = $monsterListCont.querySelector(
+    `[data-action="fight-${enemyObj.name}"]`
+  );
+  if (fightBtnEl) {
+    fightBtnEl.addEventListener("click", () => {
+      console.log(`You fight the ${enemyObj.name}!`);
+      fight(playerInfo, enemyObj);
+      console.log(playerInfo);
+    });
+  }
 };
 
 getEnemyArr();

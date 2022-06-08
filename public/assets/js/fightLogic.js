@@ -26,14 +26,14 @@ const fight = (player, enemy) => {
     player.strength += Math.ceil(enemy.strength * 0.1);
     player.monstersDefeated.push(enemy.name);
     // save the user's updated info to the db
-    // localStorage.setItem("playerSave", JSON.stringify(playerInfo));
-    fetch(`/api/users/${characterId}`, {
+    localStorage.setItem("playerSave", JSON.stringify(player));
+    fetch(`/api/users/${player._id}`, {
       method: "PUT",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(playerInfo),
+      body: JSON.stringify(player),
     })
       .then((response) => {
         if (!response.ok) {
@@ -47,9 +47,9 @@ const fight = (player, enemy) => {
       });
   } else {
     // if the player looses the fight, delete the character
-    // localStorage.removeItem("playerSave");
-    // document.location.reload();
-    fetch(`/api/users/${characterId}`, {
+    localStorage.removeItem("playerSave");
+    document.location.reload();
+    fetch(`/api/users/${player._id}`, {
       method: "DELETE",
     })
       .then((response) => {
@@ -64,5 +64,3 @@ const fight = (player, enemy) => {
       });
   }
 };
-
-module.exports = fight;
