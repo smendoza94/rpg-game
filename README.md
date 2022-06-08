@@ -1,4 +1,5 @@
 # Welcome to Frozen Falls, an in-browser battle RPG!
+https://frozen-falls-81566.herokuapp.com/
 Create a new Hero and fight your way through enemies. Every enemy you defeat will increase your health and attack so you can defeat even more powerful enemies. But be careful, if you die, your character will be PERMANENTLY DEAD! DELETED! GONE FOREVER!
 
 ## Play
